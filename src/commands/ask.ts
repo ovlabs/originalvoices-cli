@@ -17,7 +17,6 @@ export function registerAskCommand(program: Command): void {
     .option("--audience-id <id>", "Saved audience ID")
     .option("--project <id>", "Project ID (requires PROJECTS permission)")
     .option("--filter <filter>", "Filter for project respondents")
-    .option("--twin <id>", "Ask a single twin by ID (requires TWIN_ASK permission)")
     .option(
       "--type <type>",
       "Question type: open or choices",
@@ -32,35 +31,6 @@ export function registerAskCommand(program: Command): void {
     .option("--multiple-choice", "Allow multiple selections (for choices type)")
     .action(async (questions: string[], opts) => {
       try {
-        // Single twin mode
-        if (opts.twin) {
-          if (opts.type === "choices") {
-            if (!opts.choices) {
-              printError("--choices is required when using --type choices");
-              process.exit(1);
-            }
-            const res = await client.askTwinChoices(opts.twin, {
-              question: questions[0],
-              choices: opts.choices.split(",").map((c: string) => c.trim()),
-              isMultipleChoice: opts.multipleChoice || false,
-            });
-            if (isJsonMode()) return printJson(res);
-            console.log(`Selected: ${res.data.selected.join(", ")}`);
-            return;
-          }
-
-          const res = await client.askTwinOpen(opts.twin, {
-            questions: questions.length > 1 ? questions : undefined,
-            question: questions.length === 1 ? questions[0] : undefined,
-          });
-          if (isJsonMode()) return printJson(res);
-          // Single twin returns flat array
-          for (const a of res.data.answers) {
-            console.log(`  ${a.answer}`);
-          }
-          return;
-        }
-
         // Project mode
         if (opts.project) {
           const res = await client.askProject(opts.project, {
@@ -78,7 +48,7 @@ export function registerAskCommand(program: Command): void {
         // Audience mode (default)
         if (!opts.audience && !opts.audienceId) {
           printError(
-            "Provide --audience, --audience-id, --project, or --twin."
+            "Provide --audience, --audience-id, or --project."
           );
           process.exit(1);
         }

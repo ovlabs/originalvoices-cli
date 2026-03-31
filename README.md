@@ -78,12 +78,6 @@ ov ask "What frustrates you about navigation apps?" \
   --filter "people who use navigation apps daily"
 ```
 
-Ask a single Digital Twin:
-
-```bash
-ov ask "What does your morning routine look like?" --twin 550e8400-e29b-41d4-a716-446655440000
-```
-
 Control sample size:
 
 ```bash

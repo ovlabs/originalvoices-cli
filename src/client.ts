@@ -46,25 +46,6 @@ export interface AskChoicesData {
   choices: { choice: string; percentage: number }[];
 }
 
-export interface AskTwinOpenParams {
-  question?: string;
-  questions?: string[];
-}
-
-export interface AskTwinOpenData {
-  answers: { answer: string; confidence: number }[];
-}
-
-export interface AskTwinChoicesParams {
-  question: string;
-  choices: string[];
-  isMultipleChoice?: boolean;
-}
-
-export interface AskTwinChoicesData {
-  selected: string[];
-}
-
 export interface AskProjectParams {
   filter?: string;
   questions: string[];
@@ -163,18 +144,6 @@ export function askOpen(params: AskOpenParams) {
 
 export function askChoices(params: AskChoicesParams) {
   return request<AskChoicesData>("POST", "/ask/choices", params);
-}
-
-export function askTwinOpen(twinId: string, params: AskTwinOpenParams) {
-  return request<AskTwinOpenData>("POST", `/ask/twin/${twinId}/open`, params);
-}
-
-export function askTwinChoices(twinId: string, params: AskTwinChoicesParams) {
-  return request<AskTwinChoicesData>(
-    "POST",
-    `/ask/twin/${twinId}/choices`,
-    params
-  );
 }
 
 export function askProject(projectId: string, params: AskProjectParams) {
