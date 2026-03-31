@@ -1,6 +1,6 @@
 {
   "name": "@originalvoices/cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI for the OriginalVoices API",
   "type": "module",
   "bin": {
@@ -26,7 +26,12 @@
     "market-research",
     "cli"
   ],
+  "author": "OriginalVoices",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovlabs/originalvoices-cli.git"
+  },
   "dependencies": {
     "chalk": "^5.4.1",
     "cli-table3": "^0.6.5",
