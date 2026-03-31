@@ -1,5 +1,7 @@
 # OriginalVoices CLI
 
+[![npm version](https://img.shields.io/npm/v/@originalvoices/cli.svg)](https://www.npmjs.com/package/@originalvoices/cli)
+
 Command-line interface for the [OriginalVoices API](https://originalvoices.ai) — ask questions to Digital Twins, manage audiences, and explore projects from your terminal.
 
 ## Installation
