@@ -10,7 +10,7 @@ const program = new Command();
 program
   .name("ov")
   .description("CLI for the OriginalVoices API")
-  .version("0.1.0")
+  .version("1.0.0")
   .option("--json", "Output raw JSON (for scripting)")
   .hook("preAction", (thisCommand) => {
     const opts = thisCommand.optsWithGlobals();
