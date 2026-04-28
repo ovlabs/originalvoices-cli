@@ -51,11 +51,13 @@ export function printAnswers(
       console.log(chalk.dim("─".repeat(60)));
     }
 
-    const qAnswers = answers[qi] || [];
-    for (let i = 0; i < qAnswers.length; i++) {
-      const a = qAnswers[i];
+    let n = 0;
+    for (const twinAnswers of answers) {
+      const a = twinAnswers[qi];
+      if (!a) continue;
+      n++;
       const conf = chalk.dim(`(${Math.round(a.confidence * 100)}%)`);
-      console.log(`  ${chalk.cyan(`${i + 1}.`)} ${a.answer} ${conf}`);
+      console.log(`  ${chalk.cyan(`${n}.`)} ${a.answer} ${conf}`);
     }
   }
   console.log();
